@@ -1,6 +1,6 @@
 ## Dash Web Page for Covid-19 Data Visualization
 
-- Dropdown Menu for choosing countries
+- Dropdown menu for choosing countries
 - Interactive chart selection
 
 ![gerex](img/gerex.jpg)
