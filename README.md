@@ -11,10 +11,11 @@
 
 ![gertd](img/gertd.jpg)
 
+
 live demo at: https://tinyurl.com/felixcv19
 
+deploy with: gunicorn -w 3 -b 0.0.0.0:80 dashplots:server
 
-deply with: gunicorn -w 3 -b 0.0.0.0:80 dashplots:server
 
 data sources:
 
