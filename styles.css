@@ -1,0 +1,15 @@
+body {
+    background-color: #1a1a1a;
+    color: azure;
+    font-size: 1.1em;
+}
+h1 {
+    color: coral;
+    background-color: #1a1a1a;
+}
+#intro {
+    font-size: 1.3em;
+}
+.colorful {
+    color: orange;
+}
