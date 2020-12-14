@@ -3,17 +3,18 @@
 - Dropdown Menu for choosing countries
 - Interactive chart selection
 
-![gerex](\img\gerex.jpg)
+![gerex](img/gerex.jpg)
 
 
 
 - Chart for deaths of all causes in germany
 
-![gertd](\img\gertd.jpg)
+![gertd](img/gertd.jpg)
 
 live demo at: https://tinyurl.com/felixcv19
 
 
+deply with: gunicorn -w 3 -b 0.0.0.0:80 dashplots:server
 
 data sources:
 
