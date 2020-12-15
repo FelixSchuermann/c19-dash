@@ -9,7 +9,7 @@
 
 - Chart for deaths of all causes in germany
 
-![gertd](img/gertd.jpg)
+![gertd](img/gertdp.jpg)
 
 
 live demo at: https://tinyurl.com/felixcv19
