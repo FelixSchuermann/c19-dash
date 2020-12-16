@@ -41,7 +41,7 @@ def days_average(data_in,days,dfvalue):
     relevant_data= data_in[dfvalue]
     relevant_data= np.array(relevant_data)
 
-    for l in range(days,data_in.shape[0]-days):
+    for l in range(0,data_in.shape[0]):
         if l <= days:
             print("days<7")
             pass
