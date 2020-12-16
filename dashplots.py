@@ -27,10 +27,13 @@ coronaweeklydeaths2020 = deathdata['2020 (davon COVID-19)']
 deaths2020withoutcorona = deathdata['2020']-coronaweeklydeaths2020
 
 
+def GetCountryData(countryname,table=data):
+    return data[data.values==countryname]       #chose data from dataframe on specific country
+
 
 def days_average(data_in,days,dfvalue):
     """
-    calculation of test positive per days (rolling average)
+    calculation of test positive per last number of days (moving average)
     """
     dayavg=[]
     daydate=[]
@@ -38,11 +41,14 @@ def days_average(data_in,days,dfvalue):
     relevant_data= data_in[dfvalue]
     relevant_data= np.array(relevant_data)
 
-
     for l in range(days,data_in.shape[0]-days):
-        avg = (np.sum(relevant_data[l-days+3:l+3])/days)
+        if l <= days:
+            print("days<7")
+            pass
+        else:
+            avg = (np.sum(relevant_data[l-days:l])/days)
         dayavg.append(avg)
-        daydate.append(np.array(cdata['date'])[days+l])
+        daydate.append(np.array(data_in['date'])[l])
 
     return daydate, dayavg
 
@@ -62,15 +68,13 @@ colors = {
 
 #initializing graph data for first setup
 cdata= GetCountryData("Germany")
+
 xdaydates,ydayavg = days_average(cdata,7,'new_cases')
 
 prate = np.array(cdata['positive_rate'])*100     # to percent
 pratedates = cdata['date'][~np.isnan(prate)]     #removing empty columns from dataset and getting non-empty dates
 prate = prate[~np.isnan(prate)]
 
-
-def GetCountryData(countryname,table=data):
-    return data[data.values==countryname]       #chose data from dataframe on specific country
 
 
 def build_all_graphs(cdata,countryname,xdaydates,ydayavg,pratedates,prate):
@@ -264,7 +268,7 @@ deathgraph= dcc.Graph(
             font= {'color' : colors['fontcolor']},
             xaxis = {'title': 'Week Number'},
             #yaxis = {'title': 'Total Deaths of all Causes', 'range': "[0,30000]"},
-            yaxis= dict(range=[0, 30000],title='Total deaths of all causes'),
+            yaxis= dict(range=[16000, 28000],title='Total deaths of all causes'),
             height = 700
         )}) # /deathgraph
 
@@ -288,6 +292,7 @@ Changing graph values on dropdown callback
 def build_graph(value):
     # init again with chosen country
     cdata= GetCountryData(value)
+
     xdaydates,ydayavg = days_average(cdata,7,'new_cases')
     prate = np.array(cdata['positive_rate'])*100
     pratedates = cdata['date'][~np.isnan(prate)]
